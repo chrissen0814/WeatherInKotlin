@@ -12,7 +12,7 @@ import com.chrissen.kotlindemo.ForecastRequest
  *  Email: sunqirui@jiuhuar.com
  */
 
-class RequestForecastCommand(val zipCode : String) : Command<ForecastList> {
+class RequestForecastCommand(private val zipCode : String) : Command<ForecastList> {
 
     override fun execute(): ForecastList {
         val forecastRequest = ForecastRequest(zipCode)

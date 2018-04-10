@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import com.chrissen.kotlindemo.domain.Forecast
 import com.chrissen.kotlindemo.domain.RequestForecastCommand
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +24,11 @@ class MainActivity : AppCompatActivity() {
             val result = RequestForecastCommand("94043").execute()
             Log.i("Weather", result.toString())
             uiThread {
-                forecast_list.adapter = ForecastListAdapter(result)
+                forecast_list.adapter = ForecastListAdapter(result,object : ForecastListAdapter.OnItemClickListener{
+                    override fun invoke(forecast: Forecast) {
+                        toast(forecast.date)
+                    }
+                })
             }
         }
 

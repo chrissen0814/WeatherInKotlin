@@ -10,4 +10,9 @@ package com.chrissen.kotlindemo.domain
  *  Email: sunqirui@jiuhuar.com
  */
 
-data class ForecastList(val city : String , val country : String  , val dailyForecast : List<Forecast>)
+data class ForecastList(val city : String , val country : String  , val dailyForecast : List<Forecast>){
+
+    operator fun get(position: Int) = dailyForecast[position]
+
+    fun size() = dailyForecast.size
+}
